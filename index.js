@@ -9,9 +9,9 @@ function simulacija_igre(tim1, tim2) {
     if (tim1_se_povukao && tim2_se_povukao) {
         return { tim1_Rezultat: 0, tim2_Rezultat: 0 };
     } else if (tim1_se_povukao) {
-        return { tim1_Rezultat: 0, tim2_Rezultat: tim2.FIBARanking };
+        return { tim1_Rezultat: 0, tim2_Rezultat: tim2.FIBARanking * 1 };
     } else if (tim2_se_povukao) {
-        return { tim1_Rezultat: tim1.FIBARanking, tim2_Rezultat: 0 };
+        return { tim1_Rezultat: tim1.FIBARanking * 1, tim2_Rezultat: 0 };
     } else {
         const ishod_igre = Math.random();
         const tim1_Rezultat = tim1.FIBARanking * (1 - ishod_igre);
@@ -22,6 +22,9 @@ function simulacija_igre(tim1, tim2) {
 
 function simulacija_grupe(grupe) {
     const plasman_grupe = {};
+    console.log(`Grupna faza - I kolo:`)
+    console.log(`---------------------`)
+
 
     for (const grupa in grupe) {
         const timovi = grupe[grupa];
@@ -84,12 +87,15 @@ function simulacija_grupe(grupe) {
             return tim2.postignuti_kosevi - tim1.postignuti_kosevi;
         });
 
+        console.log(`---------------------`);
         console.log("Konačan plasman u grupi:");
+        console.log(`---------------------`);
+
         sortiranje_timova.forEach((ime_tima, index) => {
             const tim = rezultati[ime_tima];
             console.log(`${index + 1}. ${ime_tima} - ${tim.pobede} / ${tim.porazi} / ${tim.bodovi} / ${tim.postignuti_kosevi} / ${tim.primljeni_kosevi} / ${tim.kos_razlika}`);
         });
-
+        console.log(`---------------------`);
         plasman_grupe[grupa] = sortiranje_timova.map(ime => ({
             Team: ime,
             bodovi: rezultati[ime].bodovi,
@@ -120,6 +126,8 @@ function simulacija_grupe(grupe) {
     });
 
     console.log("Konačno rangiranje timova:");
+    console.log(`---------------------`);
+
     let rang = 1;
     for (const tim of timovi_po_rasporedu) {
         console.log(`${rang}. ${tim.Team} (Grupa: ${tim.grupa}, Pozicija u grupi: ${tim.pozicija})`);
@@ -127,9 +135,11 @@ function simulacija_grupe(grupe) {
     }
 
     const najbolji_timovi = timovi_po_rasporedu.slice(0, 8);
+    console.log(`---------------------`);
     console.log("Ekipe koje su prošle dalje su:");
-    najbolji_timovi.forEach(tim => {
-        console.log(`${tim.Team} iz grupe ${tim.grupa}`);
+    console.log(`---------------------`);
+    najbolji_timovi.forEach((tim, index) => {
+        console.log(`${index + 1}. ${tim.Team} iz grupe ${tim.grupa}`);
     });
 }
 
