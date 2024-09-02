@@ -198,6 +198,7 @@ function simulacija_grupe(grupe) {
 }
 
 function podeli_u_sesire(timovi) {
+   
     const sortiraniTimovi = timovi.sort((a, b) => a.FIBARanking - b.FIBARanking);
 
     const sesirD = sortiraniTimovi.slice(0, 2);
