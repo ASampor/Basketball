@@ -39,12 +39,10 @@ function simulacija_igre(tim1, tim2) {
 }
 
 function simulacija_utakmice(tim1, tim2, forma) {
-    const tim1_data = timovi[tim1];
-    const tim2_data = timovi[tim2];
     
     const verovatnoca_pobede = vreovatnoca(tim1, tim2, forma);
-    const tim1_Rezultat = Math.round(Math.random() * 100);
-    const tim2_Rezultat = Math.round(Math.random() * 100);
+    const tim1_Rezultat = Math.round(Math.random() *  50 + 50 * verovatnoca_pobede);
+    const tim2_Rezultat = Math.round(Math.random() * 50 + 50 * (1- verovatnoca_pobede));
     return {
         tim1_Rezultat: tim1_Rezultat + (verovatnoca_pobede * 20),
         tim2_Rezultat: tim2_Rezultat + ((1 - verovatnoca_pobede) * 20)
@@ -195,6 +193,8 @@ function simulacija_grupe(grupe) {
     najbolji_timovi.forEach((tim, index) => {
         console.log(`${index + 1}. ${tim.Team} iz grupe ${tim.grupa}`);
     });
+
+    podeli_u_sesire(najbolji_timovi);
 }
 
 function podeli_u_sesire(timovi) {
@@ -396,3 +396,38 @@ function eliminaciona_faza(timovi) {
 simulacija_grupe(podaci);
 const svi_timovi = prikupi_timove(podaci);
 eliminaciona_faza(svi_timovi);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
